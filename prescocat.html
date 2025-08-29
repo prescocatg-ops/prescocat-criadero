@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prescocat · Asesor de Raza</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .chip{font-size:.75rem;padding:.25rem .5rem;border-radius:9999px;background:#e0f2fe;border:1px solid #bae6fd;color:#0369a1;display:inline-block;margin:2px}
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-sky-50 to-white text-slate-900">
+
+  <!-- HEADER -->
+  <header class="max-w-6xl mx-auto px-5 pt-6 pb-4">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <!-- Cambia el src por tu logo si lo tienes en el mismo folder -->
+        <img src="logo-prescocat.png" alt="Prescocat"
+             class="h-12 w-12 object-contain rounded-lg border border-sky-200 bg-white"
+             onerror="this.onerror=null;this.src='https://dummyimage.com/80x80/bae6fd/0369a1&text=PC';">
+        <div>
+          <h1 class="text-2xl md:text-3xl font-bold">Prescocat · Asesor de Raza</h1>
+          <p class="text-slate-600 text-sm">Decide según tiempo, presupuesto, espacio y temperamento.</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <a href="#disponibles" class="rounded-xl px-4 py-2 border border-sky-300 text-sky-700 hover:bg-sky-50">🔎 Ver disponibles</a>
+        <!-- WhatsApp a 3233206758 (formato internacional) -->
+        <a href="https://wa.me/573233206758?text=Hola%20Prescocat%2C%20quiero%20informaci%C3%B3n%20de%20los%20gatitos"
+           class="rounded-xl px-4 py-2 bg-sky-600 text-white hover:bg-sky-700">💬 WhatsApp</a>
+        <a href="https://prescocat.com" target="_blank" rel="noreferrer"
+           class="rounded-xl px-4 py-2 border border-sky-300 text-sky-700 hover:bg-sky-50">🌐 Visitar web</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 px-5 pb-16">
+
+    <!-- FORMULARIO -->
+    <section class="bg-white rounded-2xl shadow p-6">
+      <h2 class="text-xl font-semibold mb-4">Cuestionario familiar</h2>
+
+      <div class="mb-5">
+        <div class="flex items-baseline justify-between">
+          <label class="font-medium text-slate-800">Soporte emocional (<span id="valSoporte">3</span>/5)</label>
+          <span class="text-xs text-slate-500">1 = poco, 5 = mucho</span>
+        </div>
+        <input id="soporte" type="range" min="1" max="5" value="3"
+               class="w-full accent-sky-600"
+               oninput="document.getElementById('valSoporte').textContent=this.value">
+      </div>
+
+      <div class="mb-5">
+        <label class="font-medium text-slate-800">Personalidad buscada</label>
+        <select id="personalidad" class="w-full rounded-xl border p-2 mt-2 border-sky-200">
+          <option>Equilibrado</option>
+          <option>Muy tranquilo</option>
+          <option>Muy activo</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <div class="flex items-baseline justify-between">
+          <label class="font-medium text-slate-800">Tiempo disponible (<span id="valTiempo">3</span>/5)</label>
+          <span class="text-xs text-slate-500">incluye juego y grooming</span>
+        </div>
+        <input id="tiempo" type="range" min="1" max="5" value="3"
+               class="w-full accent-sky-600"
+               oninput="document.getElementById('valTiempo').textContent=this.value">
+      </div>
+
+      <div class="mb-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="font-medium text-slate-800">Presupuesto</label>
+          <select id="presupuesto" class="w-full rounded-xl border p-2 mt-2 border-sky-200">
+            <option>Bajo</option><option selected>Medio</option><option>Alto</option>
+          </select>
+        </div>
+        <div>
+          <label class="font-medium text-slate-800">Espacio</label>
+          <select id="espacio" class="w-full rounded-xl border p-2 mt-2 border-sky-200">
+            <option>Poco</option><option selected>Medio</option><option>Amplio</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="font-medium text-slate-800">Temperamento</label>
+          <select id="temperamento" class="w-full rounded-xl border p-2 mt-2 border-sky-200">
+            <option>Afectuoso</option><option>Independiente</option><option>Juguetón</option>
+          </select>
+        </div>
+        <div>
+          <label class="font-medium text-slate-800">Alergias en el hogar</label>
+          <select id="alergia" class="w-full rounded-xl border p-2 mt-2 border-sky-200">
+            <option>Ninguna</option><option>Leve</option><option>Moderada</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- NUEVO: RAZA PREFERIDA -->
+      <div class="mb-5">
+        <label class="font-medium text-slate-800">Raza preferida</label>
+        <select id="raza" class="w-full rounded-xl border p-2 mt-2 border-sky-200">
+          <option>Ragdoll</option>
+          <option>Ragamuffin</option>
+          <option>Angora</option>
+          <option>Persa</option>
+          <option>Siberiano</option>
+          <option>Maine Coon</option>
+        </select>
+      </div>
+
+      <div class="mb-5">
+        <label class="font-medium text-slate-800">¿Qué buscas principalmente?</label>
+        <select id="preferencia" class="w-full rounded-xl border p-2 mt-2 border-sky-200">
+          <option>Compañía y calma</option><option>Juego y actividad</option><option>Equilibrio</option>
+        </select>
+      </div>
+
+      <div class="flex flex-wrap gap-2 pt-2">
+        <button onclick="reiniciar()"
+                class="rounded-xl px-4 py-2 border border-sky-300 text-sky-700 hover:bg-sky-50">Reiniciar</button>
+        <button onclick="compartir()"
+                class="rounded-xl px-4 py-2 border border-sky-300 text-sky-700 hover:bg-sky-50">Compartir</button>
+      </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section class="bg-white rounded-2xl shadow p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold">Recomendación personalizada</h2>
+        <a href="#disponibles" class="rounded-xl px-3 py-2 border border-sky-300 text-sky-700 text-sm hover:bg-sky-50">🔎 Ver disponibles</a>
+      </div>
+
+      <!-- EJEMPLO DE TARJETA (estático de muestra) -->
+      <div class="border rounded-xl p-4 mb-3 border-sky-100">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h3 class="font-semibold">Ragdoll</h3>
+            <p class="text-sm text-slate-600">Tranquilo y cariñoso. Ideal para compañía.</p>
+            <div class="mt-2">
+              <span class="chip">muy dócil</span><span class="chip">cariñoso</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-2xl font-bold text-sky-700">95</div>
+            <div class="text-xs text-slate-500">/100</div>
+          </div>
+        </div>
+        <div class="mt-3 flex gap-2">
+          <a href="https://wa.me/573233206758?text=Quiero%20conocer%20gatitos%20Ragdoll"
+             class="rounded-xl px-4 py-2 bg-sky-600 text-white hover:bg-sky-700">Agendar visita</a>
+          <a href="#disponibles"
+             class="rounded-xl px-4 py-2 border border-sky-300 text-sky-700 hover:bg-sky-50">Ver disponibles</a>
+        </div>
+      </div>
+
+      <!-- DISPONIBLES (EDITA A MANO) -->
+      <div id="disponibles" class="mt-6">
+        <h3 class="font-semibold text-lg">Gatitos disponibles</h3>
+        <ul class="grid sm:grid-cols-2 gap-3 mt-3">
+          <!-- ======================= EDITA AQUÍ ======================= -->
+          <!-- Duplica o borra <li> según tus disponibles -->
+          <li class="border rounded-xl p-3 flex justify-between items-center">
+            <div>
+              <div class="font-medium">Nala · Ragdoll</div>
+              <div class="text-xs text-slate-500">4 meses · $1.800</div>
+            </div>
+            <button class="px-3 py-1 rounded-lg bg-green-600 text-white text-sm">✅ Disponible</button>
+          </li>
+
+          <li class="border rounded-xl p-3 flex justify-between items-center">
+            <div>
+              <div class="font-medium">Milo · Siberiano</div>
+              <div class="text-xs text-slate-500">5 meses · $2.200</div>
+            </div>
+            <button class="px-3 py-1 rounded-lg bg-gray-400 text-white text-sm" disabled>❌ No disponible</button>
+          </li>
+          <!-- ==================== FIN: EDITA AQUÍ ===================== -->
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="max-w-6xl mx-auto px-5 pb-10 text-xs text-slate-500">
+    © 2025 Prescocat · Prototipo.
+  </footer>
+
+  <script>
+    function reiniciar(){
+      // Reinicia todos los campos
+      document.getElementById('soporte').value=3;
+      document.getElementById('personalidad').selectedIndex=0;
+      document.getElementById('tiempo').value=3;
+      document.getElementById('presupuesto').selectedIndex=1; // Medio
+      document.getElementById('espacio').selectedIndex=1;     // Medio
+      document.getElementById('temperamento').selectedIndex=0;
+      document.getElementById('alergia').selectedIndex=0;
+      document.getElementById('raza').selectedIndex=0;
+      document.getElementById('preferencia').selectedIndex=0;
+      document.getElementById('valSoporte').textContent=3;
+      document.getElementById('valTiempo').textContent=3;
+      alert("Formulario reiniciado ✅");
+    }
+
+    async function compartir(){
+      const data = {
+        soporte: document.getElementById('soporte').value,
+        personalidad: document.getElementById('personalidad').value,
+        tiempo: document.getElementById('tiempo').value,
+        presupuesto: document.getElementById('presupuesto').value,
+        espacio: document.getElementById('espacio').value,
+        temperamento: document.getElementById('temperamento').value,
+        alergia: document.getElementById('alergia').value,
+        raza: document.getElementById('raza').value,
+        preferencia: document.getElementById('preferencia').value,
+      };
+      const text = "Mi asesor Prescocat\n\n" + JSON.stringify(data,null,2);
+      try {
+        if (navigator.share) { await navigator.share({ title: "Prescocat", text, url: location.href }); return; }
+      } catch(e) { /* Ignorar cancelación/errores */ }
+      try {
+        await navigator.clipboard.writeText(text);
+        alert("Texto copiado ✅");
+      } catch(e) {
+        // Último recurso: descarga .txt
+        const blob = new Blob([text], {type:"text/plain;charset=utf-8"});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url; a.download = "prescocat-respuestas.txt"; a.click();
+        URL.revokeObjectURL(url);
+      }
+    }
+  </script>
+</body>
+</html>
